@@ -9,6 +9,7 @@ OBJ_DIR		= obj
 
 SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/parsing.c \
+			  $(SRC_DIR)/parsing_numeric.c \
 			  $(SRC_DIR)/init.c \
 			  $(SRC_DIR)/cleanup.c \
 			  $(SRC_DIR)/coder_routine.c \

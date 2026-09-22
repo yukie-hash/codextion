@@ -6,12 +6,16 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:49:01 by a81909            #+#    #+#             */
-/*   Updated: 2026/09/22 02:39:48 by a81909           ###   ########.fr       */
+/*   Updated: 2026/09/23 02:42:32 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"codexion.h"
+#include "codexion.h"
 
-int main(int argc, char *argv){
-    
+int	main(int argc, char **argv)
+{
+	t_simulation	simulator;
+
+	if (!parse_args(argc, argv, &simulator))
+		return (1);
 }

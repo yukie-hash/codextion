@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:50:32 by yhamada           #+#    #+#             */
-/*   Updated: 2026/09/21 20:58:49 by a81909           ###   ########.fr       */
+/*   Updated: 2026/09/23 02:05:32 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ typedef struct s_coder
 
 typedef struct s_simulation
 {
-	int				number_of_coders;
+	long			number_of_coders;
 	long			time_to_burnout;
 	long			time_to_compile;
 	long			time_to_debug;
 	long			time_to_refactor;
-	int				compiles_required;
+	long			compiles_required;
 	long			dongle_cooldown;
 	int				scheduler_type;
 	t_coder			*coders;
@@ -57,5 +57,15 @@ typedef struct s_simulation
 	int				simulation_over;
 	long			start_time_ms;
 }	t_simulation;
+
+typedef enum e_scheduler
+{
+	scheduler_fifo,
+	scheduler_edf
+}	t_scheduler;
+
+int	parse_args(int argc, char **argv, t_simulation *sim);
+int	fill_numeric_fields(char **argv, t_simulation *simulator);
+int	parse_scheduler(char *str, t_simulation *simulator);
 
 #endif
