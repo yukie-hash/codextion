@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:49:01 by a81909            #+#    #+#             */
-/*   Updated: 2026/09/23 02:42:32 by a81909           ###   ########.fr       */
+/*   Updated: 2026/09/23 14:39:18 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	main(int argc, char **argv)
 {
 	t_simulation	simulator;
+	t_coder			coder;
 
 	if (!parse_args(argc, argv, &simulator))
 		return (1);
+	
 }
