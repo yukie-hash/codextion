@@ -10,4 +10,4 @@ https://www.youtube.com/watch?v=iQVgyzgSUYM
 ### AI Resources
 - subjectの翻訳
 - pthreadについて理解するための壁打ち
-- pthread関数の使用例
+- pthread関数の使用例の生成、解説
