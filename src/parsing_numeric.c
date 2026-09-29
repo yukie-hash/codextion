@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/23 02:21:06 by a81909            #+#    #+#             */
-/*   Updated: 2026/09/23 02:33:39 by a81909           ###   ########.fr       */
+/*   Updated: 2026/09/30 01:29:36 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,21 @@ int	parse_one_field(char *str, long *dest)
 	return (1);
 }
 
-int	fill_numeric_fields(char **argv, t_simulation *simulator)
+int	fill_numeric_fields(char **argv, t_args *args)
 {
-	if (!parse_one_field(argv[1], &simulator->number_of_coders))
+	if (!parse_one_field(argv[1], &args->number_of_coders))
 		return (0);
-	if (!parse_one_field(argv[2], &simulator->time_to_burnout))
+	if (!parse_one_field(argv[2], &args->time_to_burnout))
 		return (0);
-	if (!parse_one_field(argv[3], &simulator->time_to_compile))
+	if (!parse_one_field(argv[3], &args->time_to_compile))
 		return (0);
-	if (!parse_one_field(argv[4], &simulator->time_to_debug))
+	if (!parse_one_field(argv[4], &args->time_to_debug))
 		return (0);
-	if (!parse_one_field(argv[5], &simulator->time_to_refactor))
+	if (!parse_one_field(argv[5], &args->time_to_refactor))
 		return (0);
-	if (!parse_one_field(argv[6], &simulator->compiles_required))
+	if (!parse_one_field(argv[6], &args->compiles_required))
 		return (0);
-	if (!parse_one_field(argv[7], &simulator->dongle_cooldown))
+	if (!parse_one_field(argv[7], &args->dongle_cooldown))
 		return (0);
 	return (1);
 }

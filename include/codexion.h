@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:50:32 by yhamada           #+#    #+#             */
-/*   Updated: 2026/09/23 02:05:32 by a81909           ###   ########.fr       */
+/*   Updated: 2026/09/30 01:32:17 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,24 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <string.h>
+
+typedef enum e_scheduler
+{
+	scheduler_fifo,
+	scheduler_edf
+}	t_scheduler;
+
+typedef struct s_args
+{
+	long		number_of_coders;
+	long		time_to_burnout;
+	long		time_to_compile;
+	long		time_to_debug;
+	long		time_to_refactor;
+	long		compiles_required;
+	long		dongle_cooldown;
+	t_scheduler	scheduler_type;
+}	t_args;
 
 typedef struct s_dongle
 {
@@ -56,16 +74,13 @@ typedef struct s_simulation
 	pthread_cond_t	state_cond;
 	int				simulation_over;
 	long			start_time_ms;
+	pthread_t		*threads;
 }	t_simulation;
 
-typedef enum e_scheduler
-{
-	scheduler_fifo,
-	scheduler_edf
-}	t_scheduler;
 
-int	parse_args(int argc, char **argv, t_simulation *sim);
-int	fill_numeric_fields(char **argv, t_simulation *simulator);
-int	parse_scheduler(char *str, t_simulation *simulator);
+int		parse_args(int argc, char **argv, t_args *args);
+int		fill_numeric_fields(char **argv, t_args *args);
+int		parse_scheduler(char *str, t_args *args);
+void	coder_routine(void *arg);
 
 #endif

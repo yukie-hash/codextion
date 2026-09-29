@@ -6,28 +6,28 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:49:06 by a81909            #+#    #+#             */
-/*   Updated: 2026/09/23 02:33:47 by a81909           ###   ########.fr       */
+/*   Updated: 2026/09/30 01:29:09 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-int	parse_scheduler(char *str, t_simulation *simulator)
+int	parse_scheduler(char *str, t_args *args)
 {
 	if (strcmp(str, "fifo") == 0)
 	{
-		simulator->scheduler_type = scheduler_fifo;
+		args->scheduler_type = scheduler_fifo;
 		return (1);
 	}
 	if (strcmp(str, "edf") == 0)
 	{
-		simulator->scheduler_type = scheduler_edf;
+		args->scheduler_type = scheduler_edf;
 		return (1);
 	}
 	return (0);
 }
 
-int	parse_args(int argc, char **argv, t_simulation *simulator)
+int	parse_args(int argc, char **argv, t_args *args)
 {
 	if (argc != 9)
 	{
@@ -37,12 +37,12 @@ int	parse_args(int argc, char **argv, t_simulation *simulator)
 			"number_of_compiles_required dongle_cooldown scheduler");
 		return (0);
 	}
-	if (!fill_numeric_fields(argv, simulator))
+	if (!fill_numeric_fields(argv, args))
 	{
 		fprintf(stderr, "Error: arguments must be positive integers");
 		return (0);
 	}
-	if (!parse_scheduler(argv[8], simulator))
+	if (!parse_scheduler(argv[8], args))
 	{
 		fprintf(stderr, "Error: scheduler must be fifo or edf");
 		return (0);
