@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:37 by a81909            #+#    #+#             */
-/*   Updated: 2026/09/30 03:21:25 by a81909           ###   ########.fr       */
+/*   Updated: 2026/09/30 14:38:08 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	cleanup_simulation(t_simulation *simulator)
 		i++;
 	}
 	pthread_mutex_destroy(&simulator->log_mutex);
+	pthread_mutex_destroy(&simulator->dongle_mutex);
+	pthread_cond_destroy(&simulator->dongle_cond);
 	free(simulator->coders);
 	free(simulator->threads);
+	free(simulator->dongle_free);
 }

@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:50:32 by yhamada           #+#    #+#             */
-/*   Updated: 2026/09/30 03:23:00 by a81909           ###   ########.fr       */
+/*   Updated: 2026/09/30 14:58:37 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_coder
 	int					compile_count;
 	long				last_compile_start_ms;
 	int					burned_out;
+	int					left_dongle;
+	int					right_dongle;
 	t_dongle			*left;
 	t_dongle			*right;
 	struct s_simulation	*simulator;
@@ -63,6 +65,9 @@ typedef struct s_simulation
 	t_coder			*coders;
 	pthread_t		*threads;
 	pthread_mutex_t	log_mutex;
+	pthread_mutex_t	dongle_mutex;
+	int				*dongle_free;
+	pthread_cond_t	dongle_cond;
 	long			start_time_ms;
 }	t_simulation;
 
@@ -71,9 +76,11 @@ int		fill_numeric_fields(char **argv, t_args *args);
 int		parse_scheduler(char *str, t_args *args);
 void	*coder_routine(void *arg);
 int		init_simulation(t_simulation *simulator, t_args *args);
-int		get_current_time_ms(void);
+long	get_current_time_ms(void);
 long	get_elapsed_ms(t_simulation *simulator);
 void	log_event(t_simulation *simulator, int coder_id, char *message);
 void	cleanup_simulation(t_simulation *simulator);
+void	take_dongles(t_coder *coder);
+void	release_dongles(t_coder *coder);
 
 #endif

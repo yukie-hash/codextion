@@ -77,6 +77,7 @@ typedef struct s_coder
     struct s_simulation *sim;   // 共有状態への参照
 }   t_coder;
 
+// 全体で共有される情報
 typedef struct s_simulation
 {
     int             number_of_coders;
