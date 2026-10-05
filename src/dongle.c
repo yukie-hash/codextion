@@ -6,16 +6,42 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:51 by a81909            #+#    #+#             */
-/*   Updated: 2026/09/30 14:36:40 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/06 03:06:03 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
+static int	dongle_ready(t_simulation *simulator, int dongle_index, long now)
+{
+	return (simulator->dongle_free[dongle_index]
+		&& simulator->dongle_cooldown_until[dongle_index] <= now);
+}
+
 static int	dongles_available(t_simulation *simulator, t_coder *coder)
 {
-	return (simulator->dongle_free[coder->left_dongle]
-		&& simulator->dongle_free[coder->right_dongle]);
+	long	now;
+
+	now = get_current_time_ms();
+	return (dongle_ready(simulator, coder->left_dongle, now)
+		&& dongle_ready(simulator, coder->right_dongle, now));
+}
+
+static void	wait_for_dangles(t_simulation *simulator, t_coder *coder)
+{
+	long			cooldown_end;
+	struct timespec	ts;
+
+	cooldown_end = earliest_cooldown_end_ms(simulator, coder);
+	if (cooldown_end == -1)
+	{
+		pthread_cond_wait(&simulator->dongle_cond, &simulator->dongle_mutex);
+	}
+	else
+	{
+		ms_to_timespec(cooldown_end, &ts);
+		pthread_cond_timedwait(&simulator->dongle_cond, &simulator->dongle_mutex, &ts);
+	}
 }
 
 void	take_dongles(t_coder *coder)
@@ -25,7 +51,7 @@ void	take_dongles(t_coder *coder)
 	simulator = coder->simulator;
 	pthread_mutex_lock(&simulator->dongle_mutex);
 	while (!dongles_available(simulator, coder))
-		pthread_cond_wait(&simulator->dongle_cond, &simulator->dongle_mutex);
+		wait_for_dangles(simulator, coder);
 	simulator->dongle_free[coder->left_dongle] = 0;
 	simulator->dongle_free[coder->right_dongle] = 0;
 	pthread_mutex_unlock(&simulator->dongle_mutex);
@@ -36,11 +62,15 @@ void	take_dongles(t_coder *coder)
 void	release_dongles(t_coder *coder)
 {
 	t_simulation	*simulator;
+	long			until;
 
 	simulator = coder->simulator;
+	until = get_current_time_ms() + simulator->args.dongle_cooldown;
 	pthread_mutex_lock(&simulator->dongle_mutex);
 	simulator->dongle_free[coder->left_dongle] = 1;
 	simulator->dongle_free[coder->right_dongle] = 1;
+	simulator->dongle_cooldown_until[coder->left_dongle] = until;
+	simulator->dongle_cooldown_until[coder->right_dongle] = until;
 	pthread_cond_broadcast(&simulator->dongle_cond);
 	pthread_mutex_unlock(&simulator->dongle_mutex);
 }

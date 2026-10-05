@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:50:32 by yhamada           #+#    #+#             */
-/*   Updated: 2026/09/30 14:58:37 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/06 03:06:38 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_simulation
 	int				*dongle_free;
 	pthread_cond_t	dongle_cond;
 	long			start_time_ms;
+	long			*dongle_cooldown_until;
 }	t_simulation;
 
 int		parse_args(int argc, char **argv, t_args *args);
@@ -82,5 +83,7 @@ void	log_event(t_simulation *simulator, int coder_id, char *message);
 void	cleanup_simulation(t_simulation *simulator);
 void	take_dongles(t_coder *coder);
 void	release_dongles(t_coder *coder);
+long	earliest_cooldown_end_ms(t_simulation *simulator, t_coder *coder);
+void	ms_to_timespec(long ms, struct timespec *ts);
 
 #endif

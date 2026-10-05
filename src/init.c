@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:56 by a81909            #+#    #+#             */
-/*   Updated: 2026/09/30 14:48:58 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/06 02:12:34 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ static int	allocate_dongles(t_simulation *simulator, long number_of_coders)
 	simulator->dongle_free = malloc(sizeof(int) * number_of_coders);
 	if (!simulator->dongle_free)
 		return (0);
+	simulator->dongle_cooldown_until = malloc(sizeof(long) * number_of_coders);
+	if (!simulator->dongle_cooldown_until)
+	{
+		free(simulator->dongle_free);
+		return (0);
+	}
+	memset(simulator->dongle_cooldown_until, 0,
+		sizeof(long) * number_of_coders);
 	i = 0;
 	while (i < number_of_coders)
 	{
