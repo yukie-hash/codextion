@@ -17,8 +17,8 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/dongle.c \
 			  $(SRC_DIR)/dongle_cooldown.c \
 			  $(SRC_DIR)/monitor.c \
-			  $(SRC_DIR)/scheduler_fifo.c \
-			  $(SRC_DIR)/scheduler_edf.c \
+			  $(SRC_DIR)/scheduler.c \
+			  $(SRC_DIR)/scheduler_init.c \
 			  $(SRC_DIR)/heap.c \
 			  $(SRC_DIR)/time_utils.c \
 			  $(SRC_DIR)/log.c

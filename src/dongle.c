@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:51 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/06 03:06:03 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/06 14:57:26 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ static int	dongle_ready(t_simulation *simulator, int dongle_index, long now)
 		&& simulator->dongle_cooldown_until[dongle_index] <= now);
 }
 
-static int	dongles_available(t_simulation *simulator, t_coder *coder)
+static int	can_take(t_simulation *simulator, t_coder *coder)
 {
 	long	now;
 
 	now = get_current_time_ms();
 	return (dongle_ready(simulator, coder->left_dongle, now)
-		&& dongle_ready(simulator, coder->right_dongle, now));
+		&& dongle_ready(simulator, coder->right_dongle, now)
+		&& is_my_turn(simulator, coder));
 }
 
 static void	wait_for_dangles(t_simulation *simulator, t_coder *coder)
@@ -50,8 +51,10 @@ void	take_dongles(t_coder *coder)
 
 	simulator = coder->simulator;
 	pthread_mutex_lock(&simulator->dongle_mutex);
-	while (!dongles_available(simulator, coder))
+	enqueue_request(simulator, coder);
+	while (!can_take(simulator, coder))
 		wait_for_dangles(simulator, coder);
+	dequeue_request(simulator, coder);
 	simulator->dongle_free[coder->left_dongle] = 0;
 	simulator->dongle_free[coder->right_dongle] = 0;
 	pthread_mutex_unlock(&simulator->dongle_mutex);

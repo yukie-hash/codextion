@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:50:32 by yhamada           #+#    #+#             */
-/*   Updated: 2026/10/06 03:06:38 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/06 22:52:35 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ typedef struct s_coder
 	struct s_simulation	*simulator;
 }	t_coder;
 
+# define QUEUE_CAPACITY 2
+
+typedef struct s_ticket
+{
+	long	key;
+	int		coder_id;
+}	t_ticket;
+
+typedef struct s_heap
+{
+	t_ticket	*tickets;
+	int			size;
+	int			capacity;
+}	t_heap;
+
 typedef struct s_simulation
 {
 	t_args			args;
@@ -70,6 +85,8 @@ typedef struct s_simulation
 	pthread_cond_t	dongle_cond;
 	long			start_time_ms;
 	long			*dongle_cooldown_until;
+	t_heap			*dongle_queues;
+	long			next_ticket_number;
 }	t_simulation;
 
 int		parse_args(int argc, char **argv, t_args *args);
@@ -85,5 +102,13 @@ void	take_dongles(t_coder *coder);
 void	release_dongles(t_coder *coder);
 long	earliest_cooldown_end_ms(t_simulation *simulator, t_coder *coder);
 void	ms_to_timespec(long ms, struct timespec *ts);
+void	free_arrays(t_simulation *simulator);
+int		init_dongle_queues(t_simulation *simulator, long number_of_coders);
+int		heap_top_id(t_heap *heap);
+void	enqueue_request(t_simulation *simulator, t_coder *coder);
+void	dequeue_request(t_simulation *simulator, t_coder *coder);
+int		is_my_turn(t_simulation *simulator, t_coder *coder);
+int		heap_push(t_heap *heap, long key, int coder_id);
+void	heap_pop(t_heap *heap);
 
 #endif
