@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:51 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/06 14:57:26 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/11 02:44:41 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,28 @@ static void	wait_for_dangles(t_simulation *simulator, t_coder *coder)
 	}
 }
 
-void	take_dongles(t_coder *coder)
+int	take_dongles(t_coder *coder)
 {
 	t_simulation	*simulator;
 
 	simulator = coder->simulator;
 	pthread_mutex_lock(&simulator->dongle_mutex);
 	enqueue_request(simulator, coder);
-	while (!can_take(simulator, coder))
+	while (!simulator->stop && !can_take(simulator, coder))
 		wait_for_dangles(simulator, coder);
+	if (simulator->stop)
+	{
+		pthread_mutex_unlock(&simulator->dongle_mutex);
+		return (0);
+	}
 	dequeue_request(simulator, coder);
 	simulator->dongle_free[coder->left_dongle] = 0;
 	simulator->dongle_free[coder->right_dongle] = 0;
+	coder->last_compile_start_ms = get_current_time_ms();
 	pthread_mutex_unlock(&simulator->dongle_mutex);
 	log_event(simulator, coder->id, "has taken a dongle");
 	log_event(simulator, coder->id, "has taken a dongle");
+	return (1);
 }
 
 void	release_dongles(t_coder *coder)
@@ -74,6 +81,7 @@ void	release_dongles(t_coder *coder)
 	simulator->dongle_free[coder->right_dongle] = 1;
 	simulator->dongle_cooldown_until[coder->left_dongle] = until;
 	simulator->dongle_cooldown_until[coder->right_dongle] = until;
+	coder->compile_count++;
 	pthread_cond_broadcast(&simulator->dongle_cond);
 	pthread_mutex_unlock(&simulator->dongle_mutex);
 }

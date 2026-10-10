@@ -13,10 +13,10 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/init.c \
 			  $(SRC_DIR)/cleanup.c \
 			  $(SRC_DIR)/coder_routine.c \
-			  $(SRC_DIR)/coder_actions.c \
 			  $(SRC_DIR)/dongle.c \
 			  $(SRC_DIR)/dongle_cooldown.c \
 			  $(SRC_DIR)/monitor.c \
+			  $(SRC_DIR)/stop.c \
 			  $(SRC_DIR)/scheduler.c \
 			  $(SRC_DIR)/scheduler_init.c \
 			  $(SRC_DIR)/heap.c \

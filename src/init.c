@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:56 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/06 18:32:29 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/11 03:35:41 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static void	init_coders(t_simulation *simulator)
 	{
 		simulator->coders[i].id = i + 1;
 		simulator->coders[i].compile_count = 0;
+		simulator->coders[i].last_compile_start_ms = simulator->start_time_ms;
 		simulator->coders[i].left_dongle = i;
 		simulator->coders[i].right_dongle = (i + 1) % n;
 		simulator->coders[i].simulator = simulator;
@@ -91,6 +92,8 @@ int	init_simulation(t_simulation *simulator, t_args *args)
 	simulator->start_time_ms = get_current_time_ms();  //start時刻ここから？
 	if (!simulator->start_time_ms)
 		return (0);
+	simulator->stop = 0;
+	simulator->log_closed = 0;
 	init_coders(simulator);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:37 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/06 15:20:32 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/11 02:43:21 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	cleanup_simulation(t_simulation *simulator)
 		pthread_join(simulator->threads[i], NULL);
 		i++;
 	}
+	pthread_join(simulator->monitor_thread, NULL);
 	pthread_mutex_destroy(&simulator->log_mutex);
 	pthread_mutex_destroy(&simulator->dongle_mutex);
 	pthread_cond_destroy(&simulator->dongle_cond);

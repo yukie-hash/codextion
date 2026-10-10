@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:49:01 by a81909            #+#    #+#             */
-/*   Updated: 2026/09/30 03:24:49 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/11 03:28:14 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int	main(int argc, char **argv)
 	if (!init_simulation(&simulator, &args))
 		return (1);
 	if (!start_coders(&simulator))
+		return (1);
+	if (pthread_create(&simulator.monitor_thread, NULL,
+		monitor_routine, &simulator) != 0)
 		return (1);
 	cleanup_simulation(&simulator);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:50:32 by yhamada           #+#    #+#             */
-/*   Updated: 2026/10/06 22:52:35 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/11 03:35:22 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_coder
 }	t_coder;
 
 # define QUEUE_CAPACITY 2
+# define MONITOR_INTERVAL_US 1000
 
 typedef struct s_ticket
 {
@@ -79,6 +80,7 @@ typedef struct s_simulation
 	t_args			args;
 	t_coder			*coders;
 	pthread_t		*threads;
+	pthread_t		monitor_thread;
 	pthread_mutex_t	log_mutex;
 	pthread_mutex_t	dongle_mutex;
 	int				*dongle_free;
@@ -87,6 +89,8 @@ typedef struct s_simulation
 	long			*dongle_cooldown_until;
 	t_heap			*dongle_queues;
 	long			next_ticket_number;
+	int				stop;
+	int				log_closed;
 }	t_simulation;
 
 int		parse_args(int argc, char **argv, t_args *args);
@@ -98,7 +102,7 @@ long	get_current_time_ms(void);
 long	get_elapsed_ms(t_simulation *simulator);
 void	log_event(t_simulation *simulator, int coder_id, char *message);
 void	cleanup_simulation(t_simulation *simulator);
-void	take_dongles(t_coder *coder);
+int		take_dongles(t_coder *coder);
 void	release_dongles(t_coder *coder);
 long	earliest_cooldown_end_ms(t_simulation *simulator, t_coder *coder);
 void	ms_to_timespec(long ms, struct timespec *ts);
@@ -110,5 +114,8 @@ void	dequeue_request(t_simulation *simulator, t_coder *coder);
 int		is_my_turn(t_simulation *simulator, t_coder *coder);
 int		heap_push(t_heap *heap, long key, int coder_id);
 void	heap_pop(t_heap *heap);
+void	*monitor_routine(void *arg);
+void	log_burnout(t_simulation *simulator, int coder_id);
+int		is_stopped(t_simulation *simulator);
 
 #endif
