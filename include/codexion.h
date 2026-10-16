@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:50:32 by yhamada           #+#    #+#             */
-/*   Updated: 2026/10/11 03:35:22 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/16 15:51:16 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_coder
 
 # define QUEUE_CAPACITY 2
 # define MONITOR_INTERVAL_US 1000
+# define SLEEP_SLICE_MS 5
 
 typedef struct s_ticket
 {
@@ -117,5 +118,6 @@ void	heap_pop(t_heap *heap);
 void	*monitor_routine(void *arg);
 void	log_burnout(t_simulation *simulator, int coder_id);
 int		is_stopped(t_simulation *simulator);
+int		sleep_ms(t_simulation *simulator, long ms);
 
 #endif

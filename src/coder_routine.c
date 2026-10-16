@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:48 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/11 03:18:55 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/16 15:33:08 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,26 @@
 
 static int	do_compile(t_coder *coder)
 {
+	int	done;
+
 	if (!take_dongles(coder))
 		return (0);
 	log_event(coder->simulator, coder->id, "is compiling");
-	usleep(coder->simulator->args.time_to_compile * 1000);
+	done = sleep_ms(coder->simulator, coder->simulator->args.time_to_compile);
 	release_dongles(coder);
-	return (1);
+	return (done);
 }
 
-static void	do_debug(t_coder *coder)
+static int	do_debug(t_coder *coder)
 {
 	log_event(coder->simulator, coder->id, "is debugging");
-	usleep(coder->simulator->args.time_to_compile * 1000);
+	return (sleep_ms(coder->simulator, coder->simulator->args.time_to_debug));
 }
 
-static void	do_refactor(t_coder *coder)
+static int	do_refactor(t_coder *coder)
 {
 	log_event(coder->simulator, coder->id, "is refactoring");
-	usleep(coder->simulator->args.time_to_compile * 1000);
+	return (sleep_ms(coder->simulator, coder->simulator->args.time_to_refactor));
 }
 
 static void	lone_coder(t_coder *coder)
@@ -59,10 +61,8 @@ void	*coder_routine(void *arg)
 	while (!is_stopped(coder->simulator)
 		&& coder->compile_count < coder->simulator->args.compiles_required)
 	{
-		if (!do_compile(coder))
+		if (!do_compile(coder) || !do_debug(coder) || !do_refactor(coder))
 			return (NULL);
-		do_debug(coder);
-		do_refactor(coder);
 	}
 	return (NULL);
 }
