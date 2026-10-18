@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:50:32 by yhamada           #+#    #+#             */
-/*   Updated: 2026/10/16 15:51:16 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/18 14:21:17 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,13 @@ void	enqueue_request(t_simulation *simulator, t_coder *coder);
 void	dequeue_request(t_simulation *simulator, t_coder *coder);
 int		is_my_turn(t_simulation *simulator, t_coder *coder);
 int		heap_push(t_heap *heap, long key, int coder_id);
-void	heap_pop(t_heap *heap);
+void	heap_remove(t_heap *heap, int coder_id);
 void	*monitor_routine(void *arg);
 void	log_burnout(t_simulation *simulator, int coder_id);
 int		is_stopped(t_simulation *simulator);
 int		sleep_ms(t_simulation *simulator, long ms);
+int		ticket_comes_first(t_ticket *a, t_ticket *b);
+int		find_ticket(t_heap *heap, int coder_id);
+int	dongle_ready(t_simulation *simulator, int dongle_index, long now);
 
 #endif

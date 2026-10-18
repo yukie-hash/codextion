@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 03:07:41 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/16 16:57:09 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/16 20:02:53 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ int	is_stopped(t_simulation *simulator)
 
 int	sleep_ms(t_simulation *sim, long ms)
 {
-	long	end;
+	long	end_time_ms;
 	long	left;
 
-	end = get_current_time_ms() + ms;
+	end_time_ms = get_current_time_ms() + ms;
 	left = ms;
 	while (left > 0 && !is_stopped(sim))
 	{
 		if (left > SLEEP_SLICE_MS)
 			left = SLEEP_SLICE_MS;
 		usleep(left * 1000);
-		left = end - get_current_time_ms();
+		left = end_time_ms - get_current_time_ms();
 	}
 	return (left <= 0);
 }

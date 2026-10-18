@@ -6,13 +6,13 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:51 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/11 02:44:41 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/18 14:21:03 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-static int	dongle_ready(t_simulation *simulator, int dongle_index, long now)
+int	dongle_ready(t_simulation *simulator, int dongle_index, long now)
 {
 	return (simulator->dongle_free[dongle_index]
 		&& simulator->dongle_cooldown_until[dongle_index] <= now);
