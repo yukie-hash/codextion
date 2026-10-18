@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:56 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/11 03:35:41 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/18 17:28:18 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	init_simulation(t_simulation *simulator, t_args *args)
 	}
 	pthread_mutex_init(&simulator->log_mutex, NULL);
 	simulator->next_ticket_number = 0;
-	simulator->start_time_ms = get_current_time_ms();  //start時刻ここから？
+	simulator->start_time_ms = get_current_time_ms();
 	if (!simulator->start_time_ms)
 		return (0);
 	simulator->stop = 0;

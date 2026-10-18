@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	if (!start_coders(&simulator))
 		return (1);
 	if (pthread_create(&simulator.monitor_thread, NULL,
-		monitor_routine, &simulator) != 0)
+			monitor_routine, &simulator) != 0)
 		return (1);
 	cleanup_simulation(&simulator);
 	return (0);

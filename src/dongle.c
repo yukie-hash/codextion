@@ -41,7 +41,8 @@ static void	wait_for_dangles(t_simulation *simulator, t_coder *coder)
 	else
 	{
 		ms_to_timespec(cooldown_end, &ts);
-		pthread_cond_timedwait(&simulator->dongle_cond, &simulator->dongle_mutex, &ts);
+		pthread_cond_timedwait(&simulator->dongle_cond,
+			&simulator->dongle_mutex, &ts);
 	}
 }
 

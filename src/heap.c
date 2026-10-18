@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:54 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/18 14:07:45 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/18 17:28:54 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ticket_comes_first(t_ticket *a, t_ticket *b)
 {
 	if (a->key != b->key)
 		return (a->key < b->key);
-	// edf用。keyが同じだったらコーダーidが小さい方を優先する。
 	return (a->coder_id < b->coder_id);
 }
 
@@ -78,27 +77,4 @@ int	heap_push(t_heap *heap, long key, int coder_id)
 	heap->size++;
 	heap_sift_up(heap, heap->size - 1);
 	return (1);
-}
-
-void	heap_remove(t_heap *heap, int coder_id)
-{
-	int	i;
-
-	i = find_ticket(heap, coder_id);
-	if (i < 0)
-		return ;
-	heap->size--;
-	heap->tickets[i] = heap->tickets[heap->size];
-	if (i < heap->size)
-	{
-		heap_sift_up(heap, i);
-		heap_sift_down(heap, i);
-	}
-}
-
-int	heap_top_id(t_heap *heap)
-{
-	if (heap->size == 0)
-		return (-1);
-	return (heap->tickets[0].coder_id);
 }

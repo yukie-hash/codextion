@@ -33,7 +33,8 @@ static int	do_debug(t_coder *coder)
 static int	do_refactor(t_coder *coder)
 {
 	log_event(coder->simulator, coder->id, "is refactoring");
-	return (sleep_ms(coder->simulator, coder->simulator->args.time_to_refactor));
+	return (sleep_ms(coder->simulator,
+			coder->simulator->args.time_to_refactor));
 }
 
 static void	lone_coder(t_coder *coder)

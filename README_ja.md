@@ -1,3 +1,7 @@
+*This project has been created as part of the 42 curriculum by yhamada.*
+
+
+
 ## Resources
 - Introduction To Threads (pthreads) | C Programming Tutorial  
 https://www.youtube.com/watch?v=ldJ8WGZVXZk&t=176s
@@ -12,3 +16,5 @@ https://www.youtube.com/watch?v=iQVgyzgSUYM
 - pthreadについて理解するための壁打ち
 - pthread関数の使用例の生成、解説
 - 設計の相談
+- 関数名の相談
+- heap操作の解説
