@@ -1,0 +1,103 @@
+$ ./codexion 4 800a 200 200 200 5 0 fifo
+# exit=0 elapsed=2814ms timed_out=False
+# ---- stdout ----
+0 1 has taken a dongle
+0 1 has taken a dongle
+0 1 is compiling
+0 3 has taken a dongle
+0 3 has taken a dongle
+0 3 is compiling
+201 1 is debugging
+201 3 is debugging
+202 2 has taken a dongle
+202 2 has taken a dongle
+202 2 is compiling
+202 4 has taken a dongle
+202 4 has taken a dongle
+202 4 is compiling
+402 1 is refactoring
+402 2 is debugging
+402 3 is refactoring
+402 4 is debugging
+602 2 is refactoring
+602 3 has taken a dongle
+602 3 has taken a dongle
+602 3 is compiling
+602 1 has taken a dongle
+602 1 has taken a dongle
+602 1 is compiling
+603 4 is refactoring
+803 3 is debugging
+803 1 is debugging
+803 2 has taken a dongle
+803 2 has taken a dongle
+803 2 is compiling
+803 4 has taken a dongle
+803 4 has taken a dongle
+803 4 is compiling
+1003 1 is refactoring
+1003 4 is debugging
+1003 2 is debugging
+1003 3 is refactoring
+1203 3 has taken a dongle
+1203 3 has taken a dongle
+1203 3 is compiling
+1203 1 has taken a dongle
+1203 1 has taken a dongle
+1203 1 is compiling
+1203 4 is refactoring
+1204 2 is refactoring
+1403 3 is debugging
+1404 1 is debugging
+1404 4 has taken a dongle
+1404 4 has taken a dongle
+1404 4 is compiling
+1405 2 has taken a dongle
+1405 2 has taken a dongle
+1405 2 is compiling
+1604 3 is refactoring
+1604 1 is refactoring
+1604 4 is debugging
+1605 2 is debugging
+1804 4 is refactoring
+1804 1 has taken a dongle
+1804 1 has taken a dongle
+1804 1 is compiling
+1804 3 has taken a dongle
+1804 3 has taken a dongle
+1804 3 is compiling
+1806 2 is refactoring
+2005 3 is debugging
+2005 4 has taken a dongle
+2005 4 has taken a dongle
+2005 4 is compiling
+2005 1 is debugging
+2006 2 has taken a dongle
+2006 2 has taken a dongle
+2006 2 is compiling
+2206 1 is refactoring
+2206 4 is debugging
+2206 2 is debugging
+2206 3 is refactoring
+2406 2 is refactoring
+2407 3 has taken a dongle
+2407 3 has taken a dongle
+2407 3 is compiling
+2407 4 is refactoring
+2407 1 has taken a dongle
+2407 1 has taken a dongle
+2407 1 is compiling
+2608 1 is debugging
+2608 3 is debugging
+2608 2 has taken a dongle
+2608 2 has taken a dongle
+2608 2 is compiling
+2608 4 has taken a dongle
+2608 4 has taken a dongle
+2608 4 is compiling
+2809 4 is debugging
+2809 1 is refactoring
+2809 3 is refactoring
+2809 2 is debugging
+
+# ---- stderr ----

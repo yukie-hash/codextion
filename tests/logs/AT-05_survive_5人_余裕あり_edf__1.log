@@ -1,0 +1,9 @@
+$ ./codexion 5 800 200 200 200 7 0 edf
+# exit=0 elapsed=813ms timed_out=False
+# ---- stdout ----
+0 1 has taken a dongle
+0 1 has taken a dongle
+0 1 is compiling
+802 1 burned out
+
+# ---- stderr ----

@@ -1,0 +1,5 @@
+$ ./codexion 0 800 200 200 200 5 0 fifo
+# exit=0 elapsed=4ms timed_out=False
+# ---- stdout ----
+
+# ---- stderr ----

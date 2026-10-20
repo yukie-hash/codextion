@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:37 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/18 17:59:07 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/20 16:47:40 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	cleanup_simulation(t_simulation *simulator)
 	pthread_mutex_destroy(&simulator->log_mutex);
 	pthread_mutex_destroy(&simulator->dongle_mutex);
 	pthread_cond_destroy(&simulator->dongle_cond);
+	destroy_dongle_queues(simulator->dongle_queues,
+		simulator->args.number_of_coders);
 	free(simulator->coders);
 	free(simulator->threads);
 	free(simulator->dongle_free);

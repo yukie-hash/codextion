@@ -1,0 +1,6 @@
+$ ./codexion 4 2147483648 200 200 200 5 0 fifo
+# exit=1 elapsed=4ms timed_out=False
+# ---- stdout ----
+
+# ---- stderr ----
+Error: arguments must be positive integers

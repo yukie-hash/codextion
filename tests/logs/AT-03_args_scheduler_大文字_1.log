@@ -1,0 +1,6 @@
+$ ./codexion 4 800 200 200 200 5 0 FIFO
+# exit=1 elapsed=7ms timed_out=False
+# ---- stdout ----
+
+# ---- stderr ----
+Error: scheduler must be fifo or edf

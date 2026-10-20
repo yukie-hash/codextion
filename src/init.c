@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:48:56 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/18 17:28:18 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/20 16:43:27 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,21 @@ static void	init_coders(t_simulation *simulator)
 	}
 }
 
+static void	init_state(t_simulation *simulator)
+{
+	pthread_mutex_init(&simulator->log_mutex, NULL);
+	simulator->next_ticket_number = 0;
+	simulator->created_coders = 0;
+	simulator->monitor_started = 0;
+	simulator->stop = 0;
+	simulator->log_closed = 0;
+}
+
 int	init_simulation(t_simulation *simulator, t_args *args)
 {
+	simulator->start_time_ms = get_current_time_ms();
+	if (!simulator->start_time_ms)
+		return (0);
 	simulator->args = *args;
 	if (!allocate_arrays(simulator, args->number_of_coders))
 		return (0);
@@ -84,16 +97,12 @@ int	init_simulation(t_simulation *simulator, t_args *args)
 	}
 	if (!init_dongle_queues(simulator, args->number_of_coders))
 	{
+		pthread_mutex_destroy(&simulator->dongle_mutex);
+		pthread_cond_destroy(&simulator->dongle_cond);
 		free_arrays(simulator);
 		return (0);
 	}
-	pthread_mutex_init(&simulator->log_mutex, NULL);
-	simulator->next_ticket_number = 0;
-	simulator->start_time_ms = get_current_time_ms();
-	if (!simulator->start_time_ms)
-		return (0);
-	simulator->stop = 0;
-	simulator->log_closed = 0;
+	init_state(simulator);
 	init_coders(simulator);
 	return (1);
 }

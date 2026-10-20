@@ -1,0 +1,101 @@
+$ ./codexion 4 800 3.5 200 200 5 0 fifo
+# exit=0 elapsed=1635ms timed_out=False
+# ---- stdout ----
+0 1 has taken a dongle
+0 1 has taken a dongle
+0 1 is compiling
+0 3 has taken a dongle
+0 3 has taken a dongle
+0 3 is compiling
+4 1 is debugging
+4 3 is debugging
+4 2 has taken a dongle
+4 2 has taken a dongle
+4 2 is compiling
+4 4 has taken a dongle
+4 4 has taken a dongle
+4 4 is compiling
+7 2 is debugging
+7 4 is debugging
+204 3 is refactoring
+205 1 is refactoring
+208 2 is refactoring
+208 4 is refactoring
+405 3 has taken a dongle
+405 3 has taken a dongle
+405 3 is compiling
+406 1 has taken a dongle
+406 1 has taken a dongle
+406 1 is compiling
+408 3 is debugging
+409 1 is debugging
+409 4 has taken a dongle
+409 4 has taken a dongle
+409 4 is compiling
+409 2 has taken a dongle
+409 2 has taken a dongle
+409 2 is compiling
+413 2 is debugging
+413 4 is debugging
+608 3 is refactoring
+610 1 is refactoring
+614 2 is refactoring
+614 4 is refactoring
+809 3 has taken a dongle
+809 3 has taken a dongle
+809 3 is compiling
+810 1 has taken a dongle
+810 1 has taken a dongle
+810 1 is compiling
+813 3 is debugging
+814 1 is debugging
+814 4 has taken a dongle
+814 4 has taken a dongle
+814 4 is compiling
+814 2 has taken a dongle
+814 2 has taken a dongle
+814 2 is compiling
+818 4 is debugging
+818 2 is debugging
+1013 3 is refactoring
+1014 1 is refactoring
+1018 4 is refactoring
+1018 2 is refactoring
+1214 3 has taken a dongle
+1214 3 has taken a dongle
+1214 3 is compiling
+1214 1 has taken a dongle
+1214 1 has taken a dongle
+1214 1 is compiling
+1218 3 is debugging
+1218 1 is debugging
+1218 4 has taken a dongle
+1218 4 has taken a dongle
+1218 4 is compiling
+1219 2 has taken a dongle
+1219 2 has taken a dongle
+1219 2 is compiling
+1222 4 is debugging
+1223 2 is debugging
+1418 3 is refactoring
+1419 1 is refactoring
+1423 4 is refactoring
+1424 2 is refactoring
+1618 3 has taken a dongle
+1618 3 has taken a dongle
+1618 3 is compiling
+1619 1 has taken a dongle
+1619 1 has taken a dongle
+1619 1 is compiling
+1622 3 is debugging
+1623 1 is debugging
+1625 2 has taken a dongle
+1625 2 has taken a dongle
+1625 2 is compiling
+1625 4 has taken a dongle
+1625 4 has taken a dongle
+1625 4 is compiling
+1628 4 is debugging
+1629 2 is debugging
+
+# ---- stderr ----

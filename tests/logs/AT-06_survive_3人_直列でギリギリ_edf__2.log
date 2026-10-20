@@ -1,0 +1,54 @@
+$ ./codexion 3 610 200 100 100 5 0 edf
+# exit=0 elapsed=2026ms timed_out=False
+# ---- stdout ----
+0 1 has taken a dongle
+0 1 has taken a dongle
+0 1 is compiling
+201 1 is debugging
+201 2 has taken a dongle
+201 2 has taken a dongle
+201 2 is compiling
+302 1 is refactoring
+402 2 is debugging
+402 3 has taken a dongle
+402 3 has taken a dongle
+402 3 is compiling
+503 2 is refactoring
+603 3 is debugging
+603 1 has taken a dongle
+603 1 has taken a dongle
+603 1 is compiling
+704 3 is refactoring
+804 1 is debugging
+804 2 has taken a dongle
+804 2 has taken a dongle
+804 2 is compiling
+905 1 is refactoring
+1005 2 is debugging
+1005 3 has taken a dongle
+1005 3 has taken a dongle
+1005 3 is compiling
+1106 2 is refactoring
+1206 3 is debugging
+1206 1 has taken a dongle
+1206 1 has taken a dongle
+1206 1 is compiling
+1307 3 is refactoring
+1407 1 is debugging
+1407 2 has taken a dongle
+1407 2 has taken a dongle
+1407 2 is compiling
+1507 1 is refactoring
+1607 2 is debugging
+1607 3 has taken a dongle
+1607 3 has taken a dongle
+1607 3 is compiling
+1708 2 is refactoring
+1807 3 is debugging
+1807 1 has taken a dongle
+1807 1 has taken a dongle
+1807 1 is compiling
+1907 3 is refactoring
+2019 2 burned out
+
+# ---- stderr ----

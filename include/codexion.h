@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:50:32 by yhamada           #+#    #+#             */
-/*   Updated: 2026/10/20 15:51:18 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/20 16:46:21 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,6 @@ int		find_ticket(t_heap *heap, int coder_id);
 int		dongle_ready(t_simulation *simulator, int dongle_index, long now);
 void	request_stop(t_simulation *sim);
 int		has_rival(t_simulation *simulator, t_heap *queue, t_ticket mine_ticket);
+void	destroy_dongle_queues(t_heap *queues, long count);
 
 #endif

@@ -1,0 +1,19 @@
+$ ./codexion 3 610 200 100 100 5 0 fifo
+# exit=0 elapsed=618ms timed_out=False
+# ---- stdout ----
+0 1 has taken a dongle
+0 1 has taken a dongle
+0 1 is compiling
+201 1 is debugging
+201 2 has taken a dongle
+201 2 has taken a dongle
+201 2 is compiling
+302 1 is refactoring
+412 2 is debugging
+412 3 has taken a dongle
+412 3 has taken a dongle
+412 3 is compiling
+512 2 is refactoring
+612 1 burned out
+
+# ---- stderr ----
