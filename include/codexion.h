@@ -38,24 +38,13 @@ typedef struct s_args
 	t_scheduler	scheduler_type;
 }	t_args;
 
-typedef struct s_dongle
-{
-	int				id;
-	int				in_use;
-	long			cooldown_until_ms;
-	pthread_mutex_t	mutex;
-}	t_dongle;
-
 typedef struct s_coder
 {
 	int					id;
 	int					compile_count;
 	long				last_compile_start_ms;
-	int					burned_out;
 	int					left_dongle;
 	int					right_dongle;
-	t_dongle			*left;
-	t_dongle			*right;
 	struct s_simulation	*simulator;
 }	t_coder;
 
@@ -112,7 +101,6 @@ long	earliest_cooldown_end_ms(t_simulation *simulator, t_coder *coder);
 void	ms_to_timespec(long ms, struct timespec *ts);
 void	free_arrays(t_simulation *simulator);
 int		init_dongle_queues(t_simulation *simulator, long number_of_coders);
-int		heap_top_id(t_heap *heap);
 void	enqueue_request(t_simulation *simulator, t_coder *coder);
 void	dequeue_request(t_simulation *simulator, t_coder *coder);
 int		is_my_turn(t_simulation *simulator, t_coder *coder);

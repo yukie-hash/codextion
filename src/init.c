@@ -17,7 +17,7 @@ static int	allocate_arrays(t_simulation *simulator, long number_of_coders)
 	simulator->coders = malloc(sizeof(t_coder) * number_of_coders);
 	if (!simulator->coders)
 		return (0);
-	simulator->threads = malloc(sizeof(t_coder) * number_of_coders);
+	simulator->threads = malloc(sizeof(pthread_t) * number_of_coders);
 	if (!simulator->threads)
 	{
 		free(simulator->coders);

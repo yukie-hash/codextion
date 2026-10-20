@@ -144,7 +144,7 @@ https://www.youtube.com/watch?v=iQVgyzgSUYM
 - Both values are read and written inside `dongle_mutex`, so other coders never see a half-updated state right after a release.
 
 #### How coders wait
-- The way of waiting depends on why the dongles cannot be taken (`wait_for_dangles`).
+- The way of waiting depends on why the dongles cannot be taken (`wait_for_dongles`).
 
 | Why the dongles cannot be taken | How the coder waits | Reason |
 |---|---|---|

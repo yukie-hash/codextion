@@ -12,7 +12,7 @@
 
 #include "codexion.h"
 
-void	heap_destroy(t_heap *heap)
+static void	heap_destroy(t_heap *heap)
 {
 	free(heap->tickets);
 	heap->tickets = NULL;
@@ -32,7 +32,7 @@ void	destroy_dongle_queues(t_heap *queues, long count)
 	free(queues);
 }
 
-int	heap_init(t_heap *heap, int capacity)
+static int	heap_init(t_heap *heap, int capacity)
 {
 	heap->tickets = malloc(sizeof(t_ticket) * capacity);
 	if (!heap->tickets)

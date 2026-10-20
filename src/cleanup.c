@@ -42,8 +42,5 @@ void	cleanup_simulation(t_simulation *simulator)
 	pthread_cond_destroy(&simulator->dongle_cond);
 	destroy_dongle_queues(simulator->dongle_queues,
 		simulator->args.number_of_coders);
-	free(simulator->coders);
-	free(simulator->threads);
-	free(simulator->dongle_free);
-	free(simulator->dongle_cooldown_until);
+	free_arrays(simulator);
 }

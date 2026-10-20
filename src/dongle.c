@@ -28,7 +28,7 @@ static int	can_take(t_simulation *simulator, t_coder *coder)
 		&& is_my_turn(simulator, coder));
 }
 
-static void	wait_for_dangles(t_simulation *simulator, t_coder *coder)
+static void	wait_for_dongles(t_simulation *simulator, t_coder *coder)
 {
 	long			cooldown_end;
 	struct timespec	ts;
@@ -54,7 +54,7 @@ int	take_dongles(t_coder *coder)
 	pthread_mutex_lock(&simulator->dongle_mutex);
 	enqueue_request(simulator, coder);
 	while (!simulator->stop && !can_take(simulator, coder))
-		wait_for_dangles(simulator, coder);
+		wait_for_dongles(simulator, coder);
 	if (simulator->stop)
 	{
 		pthread_mutex_unlock(&simulator->dongle_mutex);

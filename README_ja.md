@@ -143,7 +143,7 @@ https://www.youtube.com/watch?v=iQVgyzgSUYM
 - どちらの値も `dongle_mutex` の中で読み書きするので、返した直後の中途半端な状態を他のコーダーが見ることはない。
 
 #### 待ち方
-- 取れない理由によって待ち方を変えている（`wait_for_dangles`）。
+- 取れない理由によって待ち方を変えている（`wait_for_dongles`）。
 
 | 取れない理由 | 待ち方 | 理由 |
 |---|---|---|

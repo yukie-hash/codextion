@@ -41,10 +41,3 @@ void	heap_remove(t_heap *heap, int coder_id)
 		heap_sift_down(heap, i);
 	}
 }
-
-int	heap_top_id(t_heap *heap)
-{
-	if (heap->size == 0)
-		return (-1);
-	return (heap->tickets[0].coder_id);
-}
