@@ -27,24 +27,32 @@ int	parse_scheduler(char *str, t_args *args)
 	return (0);
 }
 
+static void	print_usage(void)
+{
+	fprintf(stderr, "Usage: ./codexion number_of_coders time_to_burnout "
+		"time_to_compile time_to_debug time_to_refactor "
+		"number_of_compiles_required dongle_cooldown scheduler\n"
+		"  scheduler: fifo or edf\n");
+}
+
 int	parse_args(int argc, char **argv, t_args *args)
 {
 	if (argc != 9)
 	{
-		fprintf(stderr, "Error: wrong number of arguments \n"
-			"Usage: ./codexion number_of_coders time_to_burnout"
-			"time_to_compile time_to_debug time_to_refactor "
-			"number_of_compiles_required dongle_cooldown scheduler");
+		fprintf(stderr, "Error: expected 8 arguments, got %d\n", argc - 1);
+		print_usage();
 		return (0);
 	}
 	if (!fill_numeric_fields(argv, args))
 	{
-		fprintf(stderr, "Error: arguments must be positive integers");
+		print_usage();
 		return (0);
 	}
 	if (!parse_scheduler(argv[8], args))
 	{
-		fprintf(stderr, "Error: scheduler must be fifo or edf");
+		fprintf(stderr, "Error: scheduler must be \"fifo\" or \"edf\" "
+			"(got \"%s\")\n", argv[8]);
+		print_usage();
 		return (0);
 	}
 	return (1);
