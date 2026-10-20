@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 03:07:41 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/16 20:02:53 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/18 17:54:18 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ int	is_stopped(t_simulation *simulator)
 	stopped = simulator->stop;
 	pthread_mutex_unlock(&simulator->dongle_mutex);
 	return (stopped);
+}
+
+void	request_stop(t_simulation *sim)
+{
+	pthread_mutex_lock(&sim->dongle_mutex);
+	sim->stop = 1;
+	pthread_cond_broadcast(&sim->dongle_cond);
+	pthread_mutex_unlock(&sim->dongle_mutex);
 }
 
 int	sleep_ms(t_simulation *sim, long ms)

@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:50:32 by yhamada           #+#    #+#             */
-/*   Updated: 2026/10/18 14:21:17 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/18 18:03:07 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ typedef struct s_simulation
 	long			next_ticket_number;
 	int				stop;
 	int				log_closed;
+	int				monitor_started;
+	long			created_coders;
 }	t_simulation;
 
 int		parse_args(int argc, char **argv, t_args *args);
@@ -124,5 +126,6 @@ int		sleep_ms(t_simulation *simulator, long ms);
 int		ticket_comes_first(t_ticket *a, t_ticket *b);
 int		find_ticket(t_heap *heap, int coder_id);
 int		dongle_ready(t_simulation *simulator, int dongle_index, long now);
+void	request_stop(t_simulation *sim);
 
 #endif
