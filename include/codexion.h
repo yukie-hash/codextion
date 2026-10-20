@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:50:32 by yhamada           #+#    #+#             */
-/*   Updated: 2026/10/18 18:03:07 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/20 15:51:18 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_coder
 # define QUEUE_CAPACITY 2
 # define MONITOR_INTERVAL_US 1000
 # define SLEEP_SLICE_MS 5
+# define DEADLINE_MARGIN_MS 5
 
 typedef struct s_ticket
 {
@@ -127,5 +128,6 @@ int		ticket_comes_first(t_ticket *a, t_ticket *b);
 int		find_ticket(t_heap *heap, int coder_id);
 int		dongle_ready(t_simulation *simulator, int dongle_index, long now);
 void	request_stop(t_simulation *sim);
+int		has_rival(t_simulation *simulator, t_heap *queue, t_ticket mine_ticket);
 
 #endif

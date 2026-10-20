@@ -19,6 +19,7 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/stop.c \
 			  $(SRC_DIR)/scheduler.c \
 			  $(SRC_DIR)/scheduler_init.c \
+			  $(SRC_DIR)/scheduler_rival.c \
 			  $(SRC_DIR)/heap.c \
 			  $(SRC_DIR)/heap_utils.c \
 			  $(SRC_DIR)/time_utils.c \

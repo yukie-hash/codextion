@@ -6,7 +6,7 @@
 /*   By: a81909 <a81909@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 20:49:11 by a81909            #+#    #+#             */
-/*   Updated: 2026/10/18 17:29:16 by a81909           ###   ########.fr       */
+/*   Updated: 2026/10/20 15:50:40 by a81909           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,6 @@ void	dequeue_request(t_simulation *sim, t_coder *coder)
 	heap_remove(&sim->dongle_queues[coder->left_dongle], coder->id);
 	if (coder->left_dongle != coder->right_dongle)
 		heap_remove(&sim->dongle_queues[coder->right_dongle], coder->id);
-}
-
-int	has_rival(t_simulation *simulator, t_heap *queue, t_ticket mine_ticket)
-{
-	int		i;
-	long	now;
-	t_coder	*other;
-
-	now = get_current_time_ms();
-	i = 0;
-	while (i < queue->size)
-	{
-		other = &simulator->coders[queue->tickets[i].coder_id - 1];
-		if (ticket_comes_first(&queue->tickets[i], &mine_ticket)
-			&& dongle_ready(simulator, other->left_dongle, now)
-			&& dongle_ready(simulator, other->right_dongle, now))
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 int	is_my_turn(t_simulation *simulator, t_coder *coder)
